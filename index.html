@@ -3,225 +3,936 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEBO SUPPLIES & STATIONERY | Premium E-Commerce</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>SEBO SUPPLIES & STATIONERY | Premium Corporate Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS VARIABLE MANAGEMENT (LIGHT / DARK THEME & HOLISTIC STYLING) */
+        :root {
+            --bg-gradient: linear-gradient(-45deg, #1e3a8a, #4c1d95, #0d9488, #111827);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --body-bg: #f8fafc;
+            --accent-gold: #f59e0b;
+            --nav-bg: #1e40af;
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] {
+            --card-bg: rgba(30, 41, 59, 0.9);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --body-bg: #0f172a;
+            --nav-bg: #0f172a;
+            --border-color: #334155;
+            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--body-bg);
+            color: var(--text-main);
+            transition: background-color 0.4s, color 0.4s;
+            overflow-x: hidden;
+        }
+
+        /* ANIMATED GRADIENT BACKGROUND HERO EFFECT */
+        .hero-canvas {
+            background: var(--bg-gradient);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* NAVIGATION BAR */
+        nav {
+            background-color: var(--nav-bg);
+            color: white;
+            padding: 20px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        nav .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        nav .logo-text {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+        }
+
+        nav .links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav .links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: transform 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+
+        /* HERO ELEMENTS */
+        .logo-circle {
+            width: 130px;
+            height: 130px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 25px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            font-size: 70px;
+            color: #1e40af;
+            font-weight: bold;
+            border: 4px solid var(--accent-gold);
+        }
+
+        .hero-canvas h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .hero-canvas h1 span {
+            color: var(--accent-gold);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-canvas p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: #1e293b;
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-gold:hover {
+            background-color: #d97706;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #1e40af;
+            transform: translateY(-3px);
+        }
+
+        /* METRICS COUNTER GRID */
+        .counters {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 40px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .counter-box h3 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1e40af;
+            margin-bottom: 5px;
+        }
+
+        .counter-box p {
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        /* MAIN SECTIONS */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 90px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-main);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            width: 80px;
+            height: 5px;
+            background: var(--accent-gold);
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            margin-top: 15px;
+            font-size: 18px;
+        }
+
+        /* ABOUT GRID */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            line-content: 1.8;
+        }
+
+        .bullet-list {
+            list-style: none;
+        }
+
+        .bullet-list li {
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bullet-list li i {
+            color: #10b981;
+            font-size: 20px;
+        }
+
+        .about-image-card {
+            background: linear-gradient(135deg, #1e40af, #4c1d95);
+            height: 350px;
+            border-radius: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 140px;
+            box-shadow: var(--shadow);
+            border: 4px solid var(--border-color);
+        }
+
+        /* INTERACTIVE SERVICES ARCHITECTURE */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: rgba(30, 64, 175, 0.1);
+            color: #1e40af;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+
+        .service-card:hover .icon-box {
+            background: var(--accent-gold);
+            color: #1e293b;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .inner-features {
+            list-style: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .inner-features li {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .inner-features li::before {
+            content: '•';
+            color: var(--accent-gold);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* COMPUTER TIPS TIMELINE STYLE */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .tip-box {
+            background: var(--card-bg);
+            border-left: 5px solid #3b82f6;
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .tip-box h4 {
+            margin-bottom: 10px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tip-box p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* SLIDER TESTIMONIALS SECTION */
+        .testimonial-carousel {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+        }
+
+        .stars {
+            color: var(--accent-gold);
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-slide p {
+            font-size: 20px;
+            font-style: italic;
+            color: var(--text-main);
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* COMPREHENSIVE SPLIT ORDER & COMMENTS AREA */
+        .interactive-hub {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        .form-panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            background: var(--body-bg);
+            color: var(--text-main);
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #1e40af;
+        }
+
+        /* LIVE REAL-TIME FEEDBACK COMMENTS MODULE */
+        .comments-output-box {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+            padding-right: 10px;
+        }
+
+        .posted-comment {
+            background: var(--body-bg);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .posted-comment h5 {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        /* MAP & GALLERY ROW ARCHITECTURE */
+        .map-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map-details {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-entry {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .contact-entry .icon-circle {
+            width: 50px;
+            height: 50px;
+            background: #1e40af;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        /* FLOATING WHATSAPP CHAT MODULE */
+        .whatsapp-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 35px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 10000;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-floating:hover {
+            transform: scale(1.1);
+        }
+
+        /* RESPONSIVENESS MEDIA MANAGEMENT */
+        @media (max-width: 968px) {
+            .about-layout, .interactive-hub, .map-section {
+                grid-template-columns: 1fr;
+            }
+            nav .links { display: none; }
+            .hero-canvas h1 { font-size: 32px; }
+        }
+
+        footer {
+            background: #020617;
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 14px;
+            border-top: 1px solid #1e293b;
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans">
+<body data-theme="light">
 
-    <nav class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-extrabold tracking-wider">SEBO SUPPLIES</a>
-            
-            <div class="hidden md:flex space-x-8 font-medium">
-                <a href="#" class="hover:text-blue-200 transition">Home</a>
-                <a href="#products" class="hover:text-blue-200 transition">Products</a>
-                <a href="#it-services" class="hover:text-blue-200 transition">IT Services</a>
-                <a href="#contact" class="hover:text-blue-200 transition">Contact Us</a>
-            </div>
-
-            <div class="flex items-center space-x-4">
-                <button onclick="toggleCart()" class="relative hover:text-blue-200 transition cursor-pointer">
-                    <i class="fa-solid fa-cart-shopping text-2xl"></i>
-                    <span id="cart-count" class="absolute -top-2 -right-2 bg-amber-500 text-slate-900 font-bold text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                </button>
-            </div>
+    <nav>
+        <div class="logo-area">
+            <div class="logo-text">SEBO SUPPLIES</div>
+        </div>
+        <div class="links">
+            <a href="#">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#tips">Tech Tips</a>
+            <a href="#hub">Order Hub</a>
+            <a href="#location">Location</a>
+            <button class="theme-toggle" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
         </div>
     </nav>
 
-    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 py-24 text-white text-center">
-        <div class="container mx-auto px-4">
-            <span class="bg-blue-500/30 text-blue-200 text-sm font-semibold px-4 py-1.5 rounded-full uppercase tracking-wide">Welcome to SEBO</span>
-            <h1 class="text-4xl md:text-6xl font-black mt-4 mb-6 leading-tight">Premium Office Supplies & <br><span class="text-amber-400">Expert IT Support</span></h1>
-            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">Get high-quality stationery and professional software/hardware installation services at your doorstep.</p>
-            <a href="#products" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 inline-block">Shop Now</a>
+    <header class="hero-canvas">
+        <div class="logo-circle">S</div>
+        <h1>SEBO SUPPLIES & <span>STATIONERY</span></h1>
+        <p>Your Trusted Partner for Technology, Stationery & Digital Solutions. We provide premium corporate supplies alongside high-end technical support, hardware repairs, software installation, and seamless digital workflow integrations.</p>
+        <div class="btn-group">
+            <a href="#hub" class="btn btn-gold">Order Now</a>
+            <a href="#services" class="btn btn-outline">Explore Services</a>
+            <a href="#location" class="btn btn-outline">Contact Us</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-16 flex flex-col md:flex-row gap-8 relative">
-        
-        <section id="products" class="w-full md:w-3/4">
-            <h2 class="text-3xl font-extrabold text-slate-900 mb-8 border-b-4 border-blue-600 inline-block pb-2">Our Top Products</h2>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition border border-slate-100 overflow-hidden flex flex-col justify-between">
-                    <div class="p-6 bg-slate-100 flex items-center justify-center h-48">
-                        <i class="fa-solid fa-box-archive text-blue-600 text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Stationery</span>
-                        <h3 class="font-bold text-xl mt-1 text-slate-900">A4 Paper Ream (80gsm)</h3>
-                        <p class="text-slate-500 text-sm mt-1">High-quality printing paper for office and school use.</p>
-                        <div class="flex justify-between items-center mt-4">
-                            <span class="text-blue-600 font-black text-lg">TSH 12,000</span>
-                            <button onclick="addToCart('A4 Paper Ream', 12000)" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2 cursor-pointer">
-                                <i class="fa-solid fa-cart-plus"></i> Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
+    <section class="counters">
+        <div class="counter-box">
+            <h3>500+</h3>
+            <p>Products Stocked</p>
+        </div>
+        <div class="counter-box">
+            <h3>1,200+</h3>
+            <p>Computers Serviced</p>
+        </div>
+        <div class="counter-box">
+            <h3>100%</h3>
+            <p>Quality Guaranteed</p>
+        </div>
+    </section>
 
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition border border-slate-100 overflow-hidden flex flex-col justify-between">
-                    <div class="p-6 bg-slate-100 flex items-center justify-center h-48">
-                        <i class="fa-solid fa-pen-fancy text-blue-600 text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Writing</span>
-                        <h3 class="font-bold text-xl mt-1 text-slate-900">Premium Executive Pens (Box)</h3>
-                        <p class="text-slate-500 text-sm mt-1">Smooth ink delivery system, pack of 12 pieces.</p>
-                        <div class="flex justify-between items-center mt-4">
-                            <span class="text-blue-600 font-black text-lg">TSH 8,000</span>
-                            <button onclick="addToCart('Executive Pens (Box)', 8000)" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2 cursor-pointer">
-                                <i class="fa-solid fa-cart-plus"></i> Add
-                            </button>
-                        </div>
-                    </div>
+    <section class="container" id="about">
+        <div class="about-layout">
+            <div class="about-text">
+                <div class="section-header" style="text-align: left; margin-bottom: 30px;">
+                    <h2>Welcome to SEBO</h2>
                 </div>
+                <p>We are dedicated to offering world-class commercial stationery solutions, rigorous systems maintenance, and agile electronic configuration setups. Our multi-faceted workflow empowers corporate clients, institutions, academic frameworks, and independent remote professionals.</p>
+                <ul class="bullet-list">
+                    <li><i class="fa-solid fa-square-check"></i> Exceptional and Friendly Customer Support</li>
+                    <li><i class="fa-solid fa-square-check"></i> Competitive and Budget-Friendly Market Pricing</li>
+                    <li><i class="fa-solid fa-square-check"></i> Rapid and Scalable Product Distribution Architecture</li>
+                </ul>
             </div>
-        </section>
+            <div class="about-image-card">
+                <i class="fa-solid fa-building-circle-check"></i>
+            </div>
+        </div>
+    </section>
 
-        <aside id="cart-panel" class="w-full md:w-1/4 bg-white p-6 rounded-2xl shadow-md border border-slate-100 h-fit sticky top-24">
-            <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center justify-between">
-                <span>Shopping Cart</span>
-                <i class="fa-solid fa-basket-shopping text-blue-600"></i>
-            </h3>
-            
-            <div id="cart-items" class="space-y-4 max-h-60 overflow-y-auto pr-2">
-                <p class="text-slate-400 text-sm italic">Your cart is empty.</p>
+    <section class="container" id="services" style="border-top: 1px solid var(--border-color)">
+        <div class="section-header">
+            <h2>Our Core Competencies</h2>
+            <p>Explore our premium product supplies and professional technical digital services.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-laptop-medical"></i></div>
+                <h3>Computer Repair & Support</h3>
+                <p>Comprehensive system diagnosis, micro-soldering solutions, performance enhancement, and recovery management.</p>
+                <ul class="inner-features">
+                    <li>Advanced Virus & Malware Sterilization</li>
+                    <li>Hardware Diagnostics & Upgrades (SSD/RAM)</li>
+                    <li>Data Recovery & System Backups</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-compact-disc"></i></div>
+                <h3>Software Deployments</h3>
+                <p>Official provisioning, optimization, configurations, deployment pipelines, and custom office productivity system rollouts.</p>
+                <ul class="inner-features">
+                    <li>Operating System Fresh Provisioning (Windows)</li>
+                    <li>Microsoft Office Suite Installations</li>
+                    <li>Advanced Antivirus Infrastructure Setups</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-mobile-screen"></i></div>
+                <h3>Mobile Phone Services</h3>
+                <p>Firmware flashing protocols, account recoveries, bootloader optimizations, and phone performance configurations.</p>
+                <ul class="inner-features">
+                    <li>System Firmware flashing & Loop fixes</li>
+                    <li>Google Account / FRP Bypass Protocols</li>
+                    <li>OS Optimization & Battery Management</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-print"></i></div>
+                <h3>Document Processing</h3>
+                <p>High-resolution monochrome and color production printing, lamination, commercial binding, and digitizing operations.</p>
+                <ul class="inner-features">
+                    <li>High-Volume Color/Black & White Printing</li>
+                    <li>Precision Scanning & Archiving</li>
+                    <li>Binding & Document Lamination</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-book-open"></i></div>
+                <h3>Stationery Distribution</h3>
+                <p>Wholesale and retail provisions of high-end printing materials, papers, books, files, and modern office consumables.</p>
+                <ul class="inner-features">
+                    <li>Premium Grade A4 & A3 Printing Reams</li>
+                    <li>Exercise Books & Advanced Document Files</li>
+                    <li>General Corporate & School Office Supplies</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-globe"></i></div>
+                <h3>Digital Services</h3>
+                <p>Dynamic CV/Resume design, online application assistance, government service portals navigation, and online forms handling.</p>
+                <ul class="inner-features">
+                    <li>Professional Executive CV Engineering</li>
+                    <li>Government Portal & Application Management</li>
+                    <li>Secure Digital Forms Filing Assistance</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="tips" style="border-top: 1px solid var(--border-color)">
+        <div class="section-header">
+            <h2>Proactive Computer Care Tips</h2>
+            <p>Maintain your system workflow stability by observing these key performance tips.</p>
+        </div>
+        <div class="tips-grid">
+            <div class="tip-box">
+                <h4><i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> Security First</h4>
+                <p>Deploy professional antivirus protection models and ensure daily system scanning routines.</p>
+            </div>
+            <div class="tip-box">
+                <h4><i class="fa-solid fa-floppy-disk" style="color: #3b82f6;"></i> Data Redundancy</h4>
+                <p>Perform encrypted offline backups or secure cloud storage dumps weekly for your critical business files.</p>
+            </div>
+            <div class="tip-box">
+                <h4><i class="fa-solid fa-wind" style="color: #f59e0b;"></i> Thermal Control</h4>
+                <p>Prevent system throttling by keeping fans dust-free and avoiding device over-heating operations.</p>
+            </div>
+            <div class="tip-box">
+                <h4><i class="fa-solid fa-bolt" style="color: #ef4444;"></i> Power Safety</h4>
+                <p>Always connect your stationary desktop setups to a reliable UPS system to buffer voltage peaks.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="border-top: 1px solid var(--border-color)">
+        <div class="section-header">
+            <h2>Client Voices</h2>
+            <p>See what our verified clients say about our service standard delivery cycles.</p>
+        </div>
+        <div class="testimonial-carousel">
+            <div class="testimonial-slide active">
+                <div class="stars">★★★★★</div>
+                <p>"Excellent customer management, exceptional product standards, and competitive enterprise pricing!"</p>
+                <strong style="color:var(--text-main)">— Kelvin M., Business Manager</strong>
+            </div>
+            <div class="testimonial-slide">
+                <div class="stars">★★★★★</div>
+                <p>"My development workstation was professionally repaired and fully optimized in under two hours!"</p>
+                <strong style="color:var(--text-main)">— Sarah J., Corporate Accountant</strong>
+            </div>
+            <div class="testimonial-slide">
+                <div class="stars">★★★★★</div>
+                <p>"The best platform in Mbeya for both office stationery supplies and complex software system support."</p>
+                <strong style="color:var(--text-main)">— David K., University Student</strong>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="hub" style="border-top: 1px solid var(--border-color)">
+        <div class="interactive-hub">
+            <div class="form-panel">
+                <h3 style="margin-bottom: 25px;"><i class="fa-solid fa-paper-plane" style="color:#1e40af; margin-right:10px;"></i>Submit Digital Order</h3>
+                <form id="orderForm" onsubmit="handleOrder(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" class="form-control" id="orderName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" class="form-control" id="orderPhone" required placeholder="0796862394">
+                    </div>
+                    <div class="form-group">
+                        <label>Required Service / Product Category</label>
+                        <select class="form-control" id="orderCategory">
+                            <option>Stationery Supplies Provisioning</option>
+                            <option>Computer Repair & Hardware Optimization</option>
+                            <option>Software Installation & Deployment Setup</option>
+                            <option>Mobile System Flashing / Restoration</option>
+                            <option>Digital Services / Executive Resume Building</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Detailed Request Specifications</label>
+                        <textarea class="form-control" rows="4" id="orderMessage" required placeholder="Outline product types, quantities, or specific tech issues..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-gold" style="width: 100%; border-radius: 10px;">Submit Order Request</button>
+                </form>
             </div>
 
-            <div class="border-t border-slate-100 mt-6 pt-4">
-                <div class="flex justify-between font-bold text-slate-900 text-lg">
-                    <span>Total:</span>
-                    <span id="cart-total">TSH 0</span>
-                </div>
-                <button class="w-full mt-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl shadow transition cursor-pointer">
-                    Proceed to Checkout
-                </button>
-            </div>
-        </aside>
-    </main>
-
-    <section id="it-services" class="bg-slate-900 text-white py-20">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-white">Technical IT & Software Support</h2>
-                <p class="text-slate-400 max-w-xl mx-auto">Get expert technical assistance for your personal computers or office workstations.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-blue-500 transition">
-                    <div class="w-12 h-12 bg-blue-600/20 text-blue-400 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-laptop-code text-2xl"></i>
+            <div class="form-panel">
+                <h3 style="margin-bottom: 25px;"><i class="fa-solid fa-comments" style="color:#1e40af; margin-right:10px;"></i>Client Feedback</h3>
+                <form id="commentForm" onsubmit="postComment(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" class="form-control" id="commenterName" required placeholder="Jane Smith">
                     </div>
-                    <h3 class="font-bold text-xl mb-3">Software Installation</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">OS installation (Windows/macOS), Microsoft Office, Antivirus setup, and specialized industry software solutions.</p>
-                </div>
-
-                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-blue-500 transition">
-                    <div class="w-12 h-12 bg-blue-600/20 text-blue-400 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-database text-2xl"></i>
+                    <div class="form-group">
+                        <label>Feedback Review</label>
+                        <textarea class="form-control" rows="2" id="commentText" required placeholder="Share your experience..."></textarea>
                     </div>
-                    <h3 class="font-bold text-xl mb-3">Data Recovery</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Recover lost files, missing client records, or corrupted data from Hard Drives, SSDs, and USB flash disks safely.</p>
-                </div>
-
-                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-blue-500 transition">
-                    <div class="w-12 h-12 bg-blue-600/20 text-blue-400 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+                    <div class="form-group">
+                        <label>Rating Evaluation</label>
+                        <select class="form-control" id="commentRating">
+                            <option value="★★★★★">5 Stars (Excellent)</option>
+                            <option value="★★★★">4 Stars (Good)</option>
+                            <option value="★★★">3 Stars (Average)</option>
+                        </select>
                     </div>
-                    <h3 class="font-bold text-xl mb-3">Mobile Repair & Unlocking</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Fixing software loops, firmware flashing, FRP lock bypass, and resolving operating system lags on all smartphones.</p>
+                    <button type="submit" class="btn btn-outline" style="width: 100%; background:#1e40af; border-radius: 10px;">Post Review</button>
+                </form>
+                <div class="comments-output-box" id="commentsBox">
+                    <div class="posted-comment">
+                        <h5><strong>Emmanuel M.</strong> <span>★★★★★</span></h5>
+                        <p style="font-size:14px; color:var(--text-muted)">The data recovery project on my encrypted external hard drive was 100% successful. Exceptional technical competence.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="bg-slate-950 text-slate-500 py-12 border-t border-slate-900">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-                <h4 class="text-white font-bold text-lg mb-4">SEBO SUPPLIES</h4>
-                <p class="text-sm leading-relaxed">Empowering offices and individuals with high-grade stationary supplies and exceptional computer solutions.</p>
+    <section class="container" id="location" style="border-top: 1px solid var(--border-color)">
+        <div class="map-section">
+            <div class="map-details">
+                <h3 style="font-size:28px; margin-bottom:15px;">Corporate Headquarters</h3>
+                <p style="color:var(--text-muted); margin-bottom:30px;">We are ready to serve you wherever you are. Reach us or pass by our operational offices using the following contact pathways:</p>
+                
+                <a href="tel:0796862394" class="contact-entry">
+                    <div class="icon-circle"><i class="fa-solid fa-phone"></i></div>
+                    <div>
+                        <h4 style="font-size:14px; text-transform:uppercase; color:var(--text-muted);">Voice Communication Line</h4>
+                        <strong>0796862394</strong>
+                    </div>
+                </a>
+                <a href="mailto:info@sebosupplies.com" class="contact-entry">
+                    <div class="icon-circle"><i class="fa-solid fa-envelope"></i></div>
+                    <div>
+                        <h4 style="font-size:14px; text-transform:uppercase; color:var(--text-muted);">Enterprise Mailing Gateway</h4>
+                        <strong>info@sebosupplies.com</strong>
+                    </div>
+                </a>
+                <div class="contact-entry">
+                    <div class="icon-circle"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
+                        <h4 style="font-size:14px; text-transform:uppercase; color:var(--text-muted);">Physical Business Location</h4>
+                        <strong>Mbeya, Tanzania</strong>
+                    </div>
+                </div>
             </div>
-            <div>
-                <h4 class="text-white font-bold text-lg mb-4">Contact Information</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><i class="fa-solid fa-phone mr-2 text-blue-500"></i> +255 123 456 789</li>
-                    <li><i class="fa-solid fa-envelope mr-2 text-blue-500"></i> sales@sebosupplies.com</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-bold text-lg mb-4">&copy; 2026 SEBO. All Rights Reserved.</h4>
+            <div style="width: 100%; min-height: 350px;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126442.2745300624!2d33.36440266002164!3d-8.900406080350414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1m3!1s0x193626cb3bdf9bfb%3A0x28639f7eeccb5930!2sMbeya!5e0!3m2!1sen!2stz!4v1717000000000!5m2!1sen!2stz" width="100%" height="100%" style="border:0; min-height:350px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
+    </section>
+
+    <footer>
+        <h3 style="color:white; margin-bottom:10px; font-weight:800; letter-spacing:1px;">SEBO SUPPLIES & STATIONERY</h3>
+        <p style="margin-bottom:20px;">"Quality Services • Affordable Prices • Customer Satisfaction"</p>
+        <p style="font-size:12px; opacity:0.6;">Copyright © 2026. All Rights Reserved. Engineered for Corporate Operational Excellence.</p>
     </footer>
 
+    <a href="https://wa.me/255796862394?text=Hello%20SEBO%20Supplies,%20I%20am%20visiting%20your%20website%20and%20would%20like%20to%20make%20an%20inquiry." class="whatsapp-floating" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
     <script>
-        let cart = [];
-
-        function addToCart(name, price) {
-            // Angalia kama bidhaa tayari ipo kwenye kikapu
-            const existingItem = cart.find(item => item.name === name);
+        // 1. LIGHT / DARK MODERN LAYERING THEME CONTROLLER
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
             
-            if (existingItem) {
-                existingItem.quantity += 1;
+            const themeIcon = document.getElementById('theme-icon');
+            if(newTheme === 'dark') {
+                themeIcon.className = "fa-solid fa-sun";
             } else {
-                cart.push({ name: name, price: price, quantity: 1 });
+                themeIcon.className = "fa-solid fa-moon";
             }
-            updateCart();
         }
 
-        function changeQuantity(name, amount) {
-            const item = cart.find(item => item.name === name);
-            if (item) {
-                item.quantity += amount;
-                // Kama idadi ikifika 0, ifute bidhaa kwenye kikapu
-                if (item.quantity <= 0) {
-                    cart = cart.filter(i => i.name !== name);
-                }
-            }
-            updateCart();
-        }
+        // 2. ANIMATED CAROUSEL FEEDBACK SLIDER LOGIC
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000);
 
-        function updateCart() {
-            const cartItemsContainer = document.getElementById('cart-items');
-            const cartCount = document.getElementById('cart-count');
-            const cartTotal = document.getElementById('cart-total');
+        // 3. SECURE DIGITAL ORDER CONSOLE SUBMISSION (WHATSAPP REDIRECT)
+        function handleOrder(event) {
+            event.preventDefault();
+            const name = document.getElementById('orderName').value;
+            const phone = document.getElementById('orderPhone').value;
+            const category = document.getElementById('orderCategory').value;
+            const message = document.getElementById('orderMessage').value;
+
+            // Formulate professional message dispatch
+            const whatsappText = `*NEW ORDER INQUIRY - SEBO SYSTEM*\n\n` +
+                                 `• *Client Name:* ${name}\n` +
+                                 `• *Phone contact:* ${phone}\n` +
+                                 `• *Category Selected:* ${category}\n` +
+                                 `• *Specifications:* ${message}`;
             
-            // Kama kikapu kiko tupu
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p class="text-slate-400 text-sm italic">Your cart is empty.</p>';
-                cartCount.innerText = '0';
-                cartTotal.innerText = 'TSH 0';
-                return;
-            }
+            const encodedText = encodeURIComponent(whatsappText);
+            window.open(`https://wa.me/255796862394?text=${encodedText}`, '_blank');
+        }
 
-            let totalItems = 0;
-            let totalPrice = 0;
-            cartItemsContainer.innerHTML = ''; // Safisha kila kitu kwanza
+        // 4. LIVE CLIENT COMMENTS REAL-TIME FEEDBACK RENDERING ENGINE
+        function postComment(event) {
+            event.preventDefault();
+            const name = document.getElementById('commenterName').value;
+            const text = document.getElementById('commentText').value;
+            const rating = document.getElementById('commentRating').value;
+            const box = document.getElementById('commentsBox');
 
-            cart.forEach(item => {
-                totalItems += item.quantity;
-                totalPrice += item.price * item.quantity;
-
-                // Tengeneza muundo wa kila bidhaa iliyoongezwa kwenye kikapu
-                cartItemsContainer.innerHTML += `
-                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
-                        <div>
-                            <h4 class="font-bold text-sm text-slate-900">${item.name}</h4>
-                            <p class="text-xs text-blue-600 font-semibold">TSH ${item.price.toLocaleString()}</p>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <button onclick="changeQuantity('${item.name}', -1)" class="bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs px-2 py-1 rounded font-bold cursor-pointer">-</button>
-                            <span class="text-sm font-bold">${item.quantity}</span>
-                            <button onclick="changeQuantity('${item.name}', 1)" class="bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs px-2 py-1 rounded font-bold cursor-pointer">+</button>
-                        </div>
-                    </div>
-                `;
-            });
-
-            cartCount.innerText = totalItems;
-            cartTotal.innerText = 'TSH ' + totalPrice.toLocaleString();
+            const commentElement = document.createElement('div');
+            commentElement.className = 'posted-comment';
+            commentElement.innerHTML = `<h5><strong>${name}</strong> <span>${rating}</span></h5><p style="font-size:14px; color:var(--text-muted)">${text}</p>`;
+            
+            box.insertBefore(commentElement, box.firstChild);
+            document.getElementById('commentForm').reset();
         }
     </script>
 </body>
