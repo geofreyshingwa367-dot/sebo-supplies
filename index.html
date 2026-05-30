@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEBO SUPPLIES & STATIONERY | Premium E-Commerce</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+
+    <nav class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-extrabold tracking-wider">SEBO SUPPLIES</a>
+            
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="#" class="hover:text-blue-200 transition">Home</a>
+                <a href="#products" class="hover:text-blue-200 transition">Products</a>
+                <a href="#it-services" class="hover:text-blue-200 transition">IT Services</a>
+                <a href="#contact" class="hover:text-blue-200 transition">Contact Us</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleCart()" class="relative hover:text-blue-200 transition cursor-pointer">
+                    <i class="fa-solid fa-cart-shopping text-2xl"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-amber-500 text-slate-900 font-bold text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 py-24 text-white text-center">
+        <div class="container mx-auto px-4">
+            <span class="bg-blue-500/30 text-blue-200 text-sm font-semibold px-4 py-1.5 rounded-full uppercase tracking-wide">Welcome to SEBO</span>
+            <h1 class="text-4xl md:text-6xl font-black mt-4 mb-6 leading-tight">Premium Office Supplies & <br><span class="text-amber-400">Expert IT Support</span></h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">Get high-quality stationery and professional software/hardware installation services at your doorstep.</p>
+            <a href="#products" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 inline-block">Shop Now</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16 flex flex-col md:flex-row gap-8 relative">
+        
+        <section id="products" class="w-full md:w-3/4">
+            <h2 class="text-3xl font-extrabold text-slate-900 mb-8 border-b-4 border-blue-600 inline-block pb-2">Our Top Products</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition border border-slate-100 overflow-hidden flex flex-col justify-between">
+                    <div class="p-6 bg-slate-100 flex items-center justify-center h-48">
+                        <i class="fa-solid fa-box-archive text-blue-600 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Stationery</span>
+                        <h3 class="font-bold text-xl mt-1 text-slate-900">A4 Paper Ream (80gsm)</h3>
+                        <p class="text-slate-500 text-sm mt-1">High-quality printing paper for office and school use.</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-blue-600 font-black text-lg">TSH 12,000</span>
+                            <button onclick="addToCart('A4 Paper Ream', 12000)" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition border border-slate-100 overflow-hidden flex flex-col justify-between">
+                    <div class="p-6 bg-slate-100 flex items-center justify-center h-48">
+                        <i class="fa-solid fa-pen-fancy text-blue-600 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Writing</span>
+                        <h3 class="font-bold text-xl mt-1 text-slate-900">Premium Executive Pens (Box)</h3>
+                        <p class="text-slate-500 text-sm mt-1">Smooth ink delivery system, pack of 12 pieces.</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-blue-600 font-black text-lg">TSH 8,000</span>
+                            <button onclick="addToCart('Executive Pens (Box)', 8000)" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside id="cart-panel" class="w-full md:w-1/4 bg-white p-6 rounded-2xl shadow-md border border-slate-100 h-fit sticky top-24">
+            <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center justify-between">
+                <span>Shopping Cart</span>
+                <i class="fa-solid fa-basket-shopping text-blue-600"></i>
+            </h3>
+            
+            <div id="cart-items" class="space-y-4 max-h-60 overflow-y-auto pr-2">
+                <p class="text-slate-400 text-sm italic">Your cart is empty.</p>
+            </div>
+
+            <div class="border-t border-slate-100 mt-6 pt-4">
+                <div class="flex justify-between font-bold text-slate-900 text-lg">
+                    <span>Total:</span>
+                    <span id="cart-total">TSH 0</span>
+                </div>
+                <button class="w-full mt-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl shadow transition cursor-pointer">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </aside>
+    </main>
+
+    <section id="it-services" class="bg-slate-900 text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-white">Technical IT & Software Support</h2>
+                <p class="text-slate-400 max-w-xl mx-auto">Get expert technical assistance for your personal computers or office workstations.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-blue-500 transition">
+                    <div class="w-12 h-12 bg-blue-600/20 text-blue-400 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-laptop-code text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Software Installation</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">OS installation (Windows/macOS), Microsoft Office, Antivirus setup, and specialized industry software solutions.</p>
+                </div>
+
+                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-blue-500 transition">
+                    <div class="w-12 h-12 bg-blue-600/20 text-blue-400 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-database text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Data Recovery</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Recover lost files, missing client records, or corrupted data from Hard Drives, SSDs, and USB flash disks safely.</p>
+                </div>
+
+                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-blue-500 transition">
+                    <div class="w-12 h-12 bg-blue-600/20 text-blue-400 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Mobile Repair & Unlocking</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Fixing software loops, firmware flashing, FRP lock bypass, and resolving operating system lags on all smartphones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-slate-950 text-slate-500 py-12 border-t border-slate-900">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">SEBO SUPPLIES</h4>
+                <p class="text-sm leading-relaxed">Empowering offices and individuals with high-grade stationary supplies and exceptional computer solutions.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">Contact Information</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><i class="fa-solid fa-phone mr-2 text-blue-500"></i> +255 123 456 789</li>
+                    <li><i class="fa-solid fa-envelope mr-2 text-blue-500"></i> sales@sebosupplies.com</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">&copy; 2026 SEBO. All Rights Reserved.</h4>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            // Angalia kama bidhaa tayari ipo kwenye kikapu
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: name, price: price, quantity: 1 });
+            }
+            updateCart();
+        }
+
+        function changeQuantity(name, amount) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.quantity += amount;
+                // Kama idadi ikifika 0, ifute bidhaa kwenye kikapu
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+            
+            // Kama kikapu kiko tupu
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-slate-400 text-sm italic">Your cart is empty.</p>';
+                cartCount.innerText = '0';
+                cartTotal.innerText = 'TSH 0';
+                return;
+            }
+
+            let totalItems = 0;
+            let totalPrice = 0;
+            cartItemsContainer.innerHTML = ''; // Safisha kila kitu kwanza
+
+            cart.forEach(item => {
+                totalItems += item.quantity;
+                totalPrice += item.price * item.quantity;
+
+                // Tengeneza muundo wa kila bidhaa iliyoongezwa kwenye kikapu
+                cartItemsContainer.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <div>
+                            <h4 class="font-bold text-sm text-slate-900">${item.name}</h4>
+                            <p class="text-xs text-blue-600 font-semibold">TSH ${item.price.toLocaleString()}</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="changeQuantity('${item.name}', -1)" class="bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs px-2 py-1 rounded font-bold cursor-pointer">-</button>
+                            <span class="text-sm font-bold">${item.quantity}</span>
+                            <button onclick="changeQuantity('${item.name}', 1)" class="bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs px-2 py-1 rounded font-bold cursor-pointer">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartCount.innerText = totalItems;
+            cartTotal.innerText = 'TSH ' + totalPrice.toLocaleString();
+        }
+    </script>
+</body>
+</html>
