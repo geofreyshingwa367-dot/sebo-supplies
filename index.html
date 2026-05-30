@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEBO SUPPLIES & STATIONERY | Technology & Digital Solutions</title>
+    <title>SEBO SUPPLIES & STATIONERY | Interactive Digital Book</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -11,17 +11,16 @@
             theme: {
                 extend: {
                     colors: {
-                        seboBlue: '#002060',      /* Deep corporate blue */
-                        seboGold: '#FFC000',      /* Vivid gold accent */
-                        seboDarkBlue: '#00133a',  
-                        seboWhatsApp: '#25D366'   
+                        seboBlue: '#002060',
+                        seboGold: '#FFC000',
+                        bookPage: '#fcfaf2' /* Warm white book page color */
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Locks the screen completely to prevent any downward scrolling */
+        /* Absolute Screen Lock to eliminate any page scrolling */
         html, body {
             margin: 0;
             padding: 0;
@@ -30,294 +29,220 @@
             overflow: hidden;
         }
         
-        /* Spreads your master image 'eboooooooooooooooooooooooooo.png' across the entire display screen */
-        .sebo-master-canvas {
+        /* Your master image 'eboooooooooooooooooooooooooo.png' locked as the full-screen canvas background */
+        .sebo-canvas-bg {
             background: url('eboooooooooooooooooooooooooo.png') no-repeat center center;
             background-size: 100% 100%;
             width: 100%;
             height: 100vh;
         }
 
-        /* Custom scrollbar layer inside the interactive book pages for sub-content comfort */
-        .book-scroller::-webkit-scrollbar {
-            width: 6px;
+        /* Standard custom scroll logs for data blocks within the book pages */
+        .page-scroll-block::-webkit-scrollbar {
+            width: 4px;
         }
-        .book-scroller::-webkit-scrollbar-thumb {
-            background-color: #FFC000;
-            border-radius: 10px;
+        .page-scroll-block::-webkit-scrollbar-thumb {
+            background-color: #002060;
+            border-radius: 4px;
         }
     </style>
 </head>
-<body class="text-gray-800 font-sans antialiased">
+<body class="font-sans antialiased text-gray-900">
 
-    <div class="sebo-master-canvas relative flex flex-col justify-between">
+    <div class="sebo-canvas-bg relative flex flex-col justify-between">
         
-        <nav class="bg-slate-900 bg-opacity-70 text-white z-50 shadow-lg border-b-2 border-seboGold backdrop-blur-md">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-20">
-                    <div class="flex flex-col cursor-pointer" onclick="openBookPage('home')">
-                        <span class="text-seboGold font-black text-2xl tracking-wider leading-none">SEBO</span>
-                        <span class="text-white text-[10px] tracking-widest font-bold mt-1">SUPPLIES & STATIONERY</span>
-                    </div>
-                    
-                    <div class="hidden md:flex space-x-6 text-sm font-bold tracking-wide uppercase">
-                        <button onclick="openBookPage('home')" id="nav-home" class="nav-link text-seboGold transition">Home</button>
-                        <button onclick="openBookPage('about')" id="nav-about" class="nav-link hover:text-seboGold transition">About Us</button>
-                        <button onclick="openBookPage('services')" id="nav-services" class="nav-link hover:text-seboGold transition">Services</button>
-                        <button onclick="openBookPage('products')" id="nav-products" class="nav-link hover:text-seboGold transition">Products</button>
-                        <button onclick="openBookPage('reviews')" id="nav-reviews" class="nav-link hover:text-seboGold transition">Reviews</button>
-                        <button onclick="openBookPage('contact')" id="nav-contact" class="nav-link hover:text-seboGold transition">Contact</button>
-                    </div>
-                    
-                    <div>
-                        <button onclick="openBookPage('contact')" class="bg-seboGold text-seboBlue font-black px-5 py-2 rounded-lg hover:bg-yellow-400 transition shadow-md uppercase text-xs tracking-wider">
-                            Contact Us
-                        </button>
-                    </div>
+        <nav class="bg-slate-950 bg-opacity-80 border-b border-seboGold py-4 px-6 z-50 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <div class="flex flex-col cursor-pointer" onclick="turnBookPage('services')">
+                    <span class="text-seboGold font-black text-2xl tracking-wider leading-none">SEBO</span>
+                    <span class="text-white text-[9px] tracking-widest font-bold mt-1">SUPPLIES & STATIONERY</span>
+                </div>
+                
+                <div class="flex space-x-6 text-xs font-black tracking-widest text-white uppercase">
+                    <button onclick="turnBookPage('services')" id="tab-services" class="book-tab text-seboGold transition">Our Services</button>
+                    <button onclick="turnBookPage('products')" id="tab-products" class="book-tab hover:text-seboGold transition">Products Catalog</button>
+                    <button onclick="turnBookPage('reviews')" id="tab-reviews" class="book-tab hover:text-seboGold transition">Client Reviews</button>
+                </div>
+
+                <div class="text-xs text-gray-400 font-mono hidden md:block">
+                    SYSTEM STATUS: <span class="text-green-400 font-bold">ONLINE</span>
                 </div>
             </div>
         </nav>
 
-        <main class="flex-1 flex items-center justify-center p-4 relative z-10 overflow-hidden">
+
+        <div class="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-10 z-10">
             
-            <div id="page-home" class="book-page w-full max-w-4xl text-center space-y-4 pointer-events-none">
-                </div>
+            <div class="w-full max-w-5xl h-[70vh] bg-bookPage rounded-2xl shadow-2xl border-4 border-amber-900 grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
+                
+                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-r from-gray-300 via-gray-400 to-gray-300 shadow-inner z-20"></div>
 
-            <div id="page-about" class="book-page w-full max-w-3xl bg-slate-950 bg-opacity-90 border border-blue-900 backdrop-blur-md p-8 rounded-2xl shadow-2xl text-white hidden max-h-[70vh] overflow-y-auto book-scroller">
-                <div class="border-b border-gray-800 pb-3 mb-4">
-                    <h2 class="text-2xl font-black text-seboGold tracking-wide uppercase">Corporate History & Profile</h2>
-                </div>
-                <div class="space-y-4 text-sm leading-relaxed text-gray-300 text-justify">
-                    <p>
-                        Founded in <strong>2020</strong> by digital entrepreneur and systems engineering specialist, <span class="font-black text-seboGold">GEOFREY SHINGWA PETER</span>, <strong>SEBO SUPPLIES & STATIONERY</strong> was established with a profound mission to bridge the critical gap between elite-level corporate administration materials and cutting-edge software solutions. The corporate title <strong>SEBO</strong> directly stands for <span class="text-seboGold font-bold">SHINGWA EMPOWERMENT BUSINESS OPPORTUNITIES</span>—standing as a true testament to our core philosophy of creating corporate value and empowering enterprises.
-                    </p>
-                    <p>
-                        What originally launched as a dedicated localized venture widely known as <em>GJ SUPPLIES & STATIONERY</em> has systematically evolved through meticulous, high-grade rebranding into a massive tech-and-stationery powerhouse. Under the rigorous technical supervision of our founder, SEBO operates twin pillars of absolute excellence: **Next-Generation Stationery Logistics** and **Advanced High-Tier Software Engineering Support**.
-                    </p>
-                </div>
-            </div>
-
-            <div id="page-services" class="book-page w-full max-w-4xl bg-slate-950 bg-opacity-90 border border-blue-900 backdrop-blur-md p-6 rounded-2xl shadow-2xl text-white hidden max-h-[75vh] overflow-y-auto book-scroller">
-                <div class="border-b border-gray-800 pb-3 mb-4 text-center">
-                    <h2 class="text-2xl font-black text-seboGold tracking-wide uppercase">Technical Expertise Modules</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-slate-900 p-5 rounded-xl border border-gray-800">
-                        <div class="text-2xl mb-2">💻</div>
-                        <h3 class="text-base font-bold text-seboGold">PC Repair & Data Recovery</h3>
-                        <p class="text-gray-400 text-xs mt-1 leading-relaxed">Deep board-level debugging, hardware configuration upgrades, and 100% advanced data recovery metrics from damaged drives.</p>
-                    </div>
-                    <div class="bg-slate-900 p-5 rounded-xl border border-gray-800">
-                        <div class="text-2xl mb-2">💿</div>
-                        <h3 class="text-base font-bold text-seboGold">Software Installation</h3>
-                        <p class="text-gray-400 text-xs mt-1 leading-relaxed">Official Operating System updates (Windows 10/11), automated driver updates, and genuine productivity utility activations.</p>
-                    </div>
-                    <div class="bg-slate-900 p-5 rounded-xl border border-gray-800">
-                        <div class="text-2xl mb-2">📱</div>
-                        <h3 class="text-base font-bold text-seboGold">Mobile Software Services</h3>
-                        <p class="text-gray-400 text-xs mt-1 leading-relaxed">Official stock firmware flashing to fix continuous bootloops, Factory Reset Protection (FRP) security bypass, and phone unlocking.</p>
-                    </div>
-                    <div class="bg-slate-900 p-5 rounded-xl border border-gray-800">
-                        <div class="text-2xl mb-2">🖨️</div>
-                        <h3 class="text-base font-bold text-seboGold">Printing & Finishing</h3>
-                        <p class="text-gray-400 text-xs mt-1 leading-relaxed">High-speed documentation duplication, clean color printing, spiral binding options, and heavy sheet lamination solutions.</p>
-                    </div>
-                    <div class="bg-slate-900 p-5 rounded-xl border border-gray-800">
-                        <div class="text-2xl mb-2">📚</div>
-                        <h3 class="text-base font-bold text-seboGold">Stationery Supplies</h3>
-                        <p class="text-gray-400 text-xs mt-1 leading-relaxed">Bulk logistics of premium office rim papers, academic logs, record books, box files, and standard executive writing accessories.</p>
-                    </div>
-                    <div class="bg-slate-900 p-5 rounded-xl border border-gray-800">
-                        <div class="text-2xl mb-2">🌐</div>
-                        <h3 class="text-base font-bold text-seboGold">Online Digital Portal</h3>
-                        <p class="text-gray-400 text-xs mt-1 leading-relaxed">Professional executive CV/Resume layout drafting, secure online web portal registration, and cloud transaction handlings.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="page-products" class="book-page w-full max-w-4xl bg-slate-950 bg-opacity-90 border border-blue-900 backdrop-blur-md p-6 rounded-2xl shadow-2xl text-white hidden max-h-[75vh] overflow-y-auto book-scroller">
-                <div class="border-b border-gray-800 pb-3 mb-6 text-center">
-                    <h2 class="text-2xl font-black text-seboGold tracking-wide uppercase">Product Catalog Store</h2>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-slate-900 rounded-xl p-4 border border-gray-800 flex flex-col justify-between text-center">
-                        <div>
-                            <div class="text-4xl mb-2">📄</div>
-                            <h3 class="text-xs font-bold text-gray-200">Deli A4 Paper Rim (80gsm)</h3>
-                            <p class="text-seboGold font-black text-base mt-1">15,000 TZS</p>
+                <div class="p-6 md:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-gray-300 bg-[#f9f6ec]">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-mono font-bold tracking-widest text-seboBlue uppercase">Volume I • Profile Log</span>
+                            <span class="text-xs text-gray-400 font-serif italic">Page 01</span>
                         </div>
-                        <a href="https://wa.me/255796862394?text=Hello%20SEBO,%20I%20want%20Deli%20A4%20Paper" target="_blank" class="block bg-seboWhatsApp hover:bg-green-600 text-white text-[10px] font-bold py-1.5 rounded-lg mt-3 transition uppercase">💬 Order</a>
-                    </div>
-                    <div class="bg-slate-900 rounded-xl p-4 border border-gray-800 flex flex-col justify-between text-center">
-                        <div>
-                            <div class="text-4xl mb-2">📖</div>
-                            <h3 class="text-xs font-bold text-gray-200">Quarto Counter Book (3-Quire)</h3>
-                            <p class="text-seboGold font-black text-base mt-1">4,500 TZS</p>
-                        </div>
-                        <a href="https://wa.me/255796862394?text=Hello%20SEBO,%20I%20want%20Quarto%20Book" target="_blank" class="block bg-seboWhatsApp hover:bg-green-600 text-white text-[10px] font-bold py-1.5 rounded-lg mt-3 transition uppercase">💬 Order</a>
-                    </div>
-                    <div class="bg-slate-900 rounded-xl p-4 border border-gray-800 flex flex-col justify-between text-center">
-                        <div>
-                            <div class="text-4xl mb-2">📟</div>
-                            <h3 class="text-xs font-bold text-gray-200">Kingston 64GB Flash Drive</h3>
-                            <p class="text-seboGold font-black text-base mt-1">20,000 TZS</p>
-                        </div>
-                        <a href="https://wa.me/255796862394?text=Hello%20SEBO,%20I%20want%2064GB%20Flash" target="_blank" class="block bg-seboWhatsApp hover:bg-green-600 text-white text-[10px] font-bold py-1.5 rounded-lg mt-3 transition uppercase">💬 Order</a>
-                    </div>
-                    <div class="bg-slate-900 rounded-xl p-4 border border-gray-800 flex flex-col justify-between text-center">
-                        <div>
-                            <div class="text-4xl mb-2">🖱️</div>
-                            <h3 class="text-xs font-bold text-gray-200">Logitech Wireless Mouse</h3>
-                            <p class="text-seboGold font-black text-base mt-1">25,000 TZS</p>
-                        </div>
-                        <a href="https://wa.me/255796862394?text=Hello%20SEBO,%20I%20want%20Wireless%20Mouse" target="_blank" class="block bg-seboWhatsApp hover:bg-green-600 text-white text-[10px] font-bold py-1.5 rounded-lg mt-3 transition uppercase">💬 Order</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="page-reviews" class="book-page w-full max-w-4xl bg-slate-950 bg-opacity-90 border border-blue-900 backdrop-blur-md p-6 rounded-2xl shadow-2xl text-white hidden max-h-[75vh] overflow-y-auto book-scroller">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-slate-900 p-4 rounded-xl border border-gray-800 h-fit space-y-3">
-                        <h3 class="text-base font-bold text-seboGold uppercase">Submit Feedback</h3>
-                        <form id="commentForm" onsubmit="submitComment(event)" class="space-y-3 text-xs">
-                            <div>
-                                <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Your Full Name</label>
-                                <input type="text" id="reviewerName" required class="w-full px-3 py-2 rounded bg-slate-800 border border-gray-700 text-white focus:outline-none focus:border-seboGold" placeholder="e.g. Emmanuel John">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Service Rendered</label>
-                                <select id="reviewedService" class="w-full px-3 py-2 rounded bg-slate-800 border border-gray-700 text-gray-300 focus:outline-none focus:border-seboGold">
-                                    <option>Mobile Software Repair</option>
-                                    <option>Computer Repair & Data Recovery</option>
-                                    <option>Software Installation</option>
-                                    <option>Stationery Supplies</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Score Rating</label>
-                                <div class="flex space-x-1 text-xl cursor-pointer text-gray-400" id="starRatingContainer">
-                                    <span onclick="setRating(1)" class="star">★</span>
-                                    <span onclick="setRating(2)" class="star">★</span>
-                                    <span onclick="setRating(3)" class="star">★</span>
-                                    <span onclick="setRating(4)" class="star">★</span>
-                                    <span onclick="setRating(5)" class="star">★</span>
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Evaluation Notes</label>
-                                <textarea id="reviewerText" rows="2" required class="w-full px-3 py-2 rounded bg-slate-800 border border-gray-700 text-white focus:outline-none focus:border-seboGold" placeholder="Detail your experience..."></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-seboGold text-seboBlue font-black py-2 rounded uppercase text-[10px] tracking-wider">Upload Review Log</button>
-                        </form>
-                    </div>
-                    <div class="md:col-span-2 space-y-3" id="commentsDisplayContainer">
-                        <h3 class="text-base font-bold text-seboGold uppercase tracking-wider mb-2">Live Verification Logs</h3>
+                        <hr class="border-gray-300">
+                        <h2 class="text-2xl font-black font-serif text-seboBlue tracking-wide uppercase leading-tight">Corporate History & Enterprise Foundation</h2>
                         
-                        <div class="bg-slate-900 p-4 rounded-xl border border-gray-800">
-                            <div class="flex justify-between items-start text-xs">
-                                <div>
-                                    <h4 class="font-bold text-white">Kelvin Mwaisaka</h4>
-                                    <span class="text-[10px] text-seboGold">Computer Repair & Data Recovery</span>
-                                </div>
-                                <div class="text-seboGold">★★★★★</div>
-                            </div>
-                            <p class="text-gray-400 text-xs mt-2 italic">"I honestly thought I lost my entire final year university project directories. SEBO executed an expert Advanced Data Recovery procedure and safely retrieved 100% of my data vectors. Flawless technical integrity!"</p>
+                        <div class="text-xs md:text-sm text-gray-700 leading-relaxed space-y-3 font-serif text-justify max-h-[38vh] overflow-y-auto page-scroll-block pr-1">
+                            <p>
+                                Founded in the year <span class="font-bold text-seboBlue">2020</span> by visionary digital entrepreneur and advanced systems repair engineer, <span class="font-bold text-seboBlue">GEOFREY SHINGWA PETER</span>, <strong>SEBO SUPPLIES & STATIONERY</strong> operates with a dedicated mission to deliver top-tier office assets alongside high-end software solutions.
+                            </p>
+                            <p>
+                                The corporate identity <strong>SEBO</strong> directly stands for <span class="text-seboBlue font-bold">SHINGWA EMPOWERMENT BUSINESS OPPORTUNITIES</span>. What initially serving local tech domains as <em>GJ SUPPLIES & STATIONERY</em> has systematically rebranded into a massive dual-infrastructure tech enterprise hub.
+                            </p>
                         </div>
                     </div>
+
+                    <div class="pt-4 border-t border-gray-300 text-[11px] text-gray-600 space-y-1 font-sans">
+                        <p>📍 <strong>Hub Location:</strong> Mbeya, Tanzania (Campus Area)</p>
+                        <p>📞 <strong>Direct Operations Network:</strong> +255 796 862 394</p>
+                    </div>
+                </div>
+
+
+                <div class="p-6 md:p-8 flex flex-col justify-between bg-white relative">
+                    
+                    <div class="absolute right-6 top-6 text-xs text-gray-400 font-serif italic" id="page-number-view">Page 02</div>
+
+                    <div id="book-services" class="book-sub-content space-y-3 h-full flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-xs font-mono font-bold tracking-widest text-seboBlue uppercase border-b border-gray-200 pb-1">Operational Technical Index</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto page-scroll-block pr-1 pt-1">
+                                <div class="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                                    <h4 class="font-bold text-xs text-seboBlue">💻 PC Repair & Recovery</h4>
+                                    <p class="text-[11px] text-gray-600 mt-0.5">Deep board troubleshooting, hardware upgrades, and complete advanced storage sector data data recovery layout metrics.</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                                    <h4 class="font-bold text-xs text-seboBlue">📱 Mobile Software Engineering</h4>
+                                    <p class="text-[11px] text-gray-600 mt-0.5">Official stock ROM firmware flashing to fix continuous bootloops, FRP/Google lock bypass, and network unlocks.</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                                    <h4 class="font-bold text-xs text-seboBlue">💿 Software Deployments</h4>
+                                    <p class="text-[11px] text-gray-600 mt-0.5">Clean Windows 10/11 operating system installations, driver optimizations, and corporate program activations.</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                                    <h4 class="font-bold text-xs text-seboBlue">🖨️ Printing & Distribution</h4>
+                                    <p class="text-[11px] text-gray-600 mt-0.5">High-speed clear document duplication, spiral document binding, scanning protocols, and protective heavy sheet lamination.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="turnBookPage('products')" class="w-full bg-seboBlue text-white py-2 rounded text-xs font-bold uppercase tracking-wider mt-2">Next Page: View Products Catalog →</button>
+                    </div>
+
+                    <div id="book-products" class="book-sub-content space-y-3 h-full flex flex-col justify-between hidden">
+                        <div class="space-y-2">
+                            <h3 class="text-xs font-mono font-bold tracking-widest text-seboBlue uppercase border-b border-gray-200 pb-1">Premium Inventory Line</h3>
+                            <div class="grid grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto page-scroll-block pr-1 pt-1">
+                                <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 text-center flex flex-col justify-between">
+                                    <div class="text-2xl">📄</div>
+                                    <h4 class="text-[11px] font-bold text-gray-800">Deli A4 Paper Rim</h4>
+                                    <p class="text-seboBlue font-black text-xs my-0.5">15,000 TZS</p>
+                                    <a href="https://wa.me/255796862394?text=I%20want%20to%20order%20A4%20Paper" target="_blank" class="block bg-seboWhatsApp text-white font-bold text-[9px] py-1 rounded uppercase">Order</a>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 text-center flex flex-col justify-between">
+                                    <div class="text-2xl">📖</div>
+                                    <h4 class="text-[11px] font-bold text-gray-800">Quarto Counter Book</h4>
+                                    <p class="text-seboBlue font-black text-xs my-0.5">4,500 TZS</p>
+                                    <a href="https://wa.me/255796862394?text=I%20want%20to%20order%20Counter%20Book" target="_blank" class="block bg-seboWhatsApp text-white font-bold text-[9px] py-1 rounded uppercase">Order</a>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 text-center flex flex-col justify-between">
+                                    <div class="text-2xl">📟</div>
+                                    <h4 class="text-[11px] font-bold text-gray-800">Kingston 64GB Flash</h4>
+                                    <p class="text-seboBlue font-black text-xs my-0.5">20,000 TZS</p>
+                                    <a href="https://wa.me/255796862394?text=I%20want%20to%20order%2064GB%20Flash" target="_blank" class="block bg-seboWhatsApp text-white font-bold text-[9px] py-1 rounded uppercase">Order</a>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 text-center flex flex-col justify-between">
+                                    <div class="text-2xl">🖱️</div>
+                                    <h4 class="text-[11px] font-bold text-gray-800">Wireless Mouse M170</h4>
+                                    <p class="text-seboBlue font-black text-xs my-0.5">25,000 TZS</p>
+                                    <a href="https://wa.me/255796862394?text=I%20want%20to%20order%20Wireless%20Mouse" target="_blank" class="block bg-seboWhatsApp text-white font-bold text-[9px] py-1 rounded uppercase">Order</a>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="turnBookPage('reviews')" class="w-full bg-seboBlue text-white py-2 rounded text-xs font-bold uppercase tracking-wider mt-2">Next Page: View Client Reviews →</button>
+                    </div>
+
+                    <div id="book-reviews" class="book-sub-content space-y-3 h-full flex flex-col justify-between hidden">
+                        <div class="space-y-2">
+                            <h3 class="text-xs font-mono font-bold tracking-widest text-seboBlue uppercase border-b border-gray-200 pb-1">Client Feedback Matrix</h3>
+                            <div class="max-h-[35vh] overflow-y-auto page-scroll-block space-y-2 pr-1" id="commentsDisplayContainer">
+                                <div class="bg-gray-50 p-3 rounded border border-gray-200 text-justify">
+                                    <div class="flex justify-between font-bold text-[11px] text-seboBlue"><span>Kelvin Mwaisaka</span><span>★★★★★</span></div>
+                                    <p class="text-[10px] text-gray-600 mt-1 italic">"I honestly thought I lost my final year project. SEBO executed an expert Advanced Data Recovery and safely retrieved 100% of my data files!"</p>
+                                </div>
+                            </div>
+                            <form id="commentForm" onsubmit="submitComment(event)" class="bg-gray-50 p-2 rounded border border-gray-200 text-[10px] space-y-1.5">
+                                <div class="grid grid-cols-2 gap-2">
+                                    <input type="text" id="reviewerName" required placeholder="Your Full Name" class="w-full p-1 border rounded bg-white">
+                                    <select id="reviewedService" class="w-full p-1 border rounded bg-white text-gray-600">
+                                        <option>PC Repair & Data Recovery</option>
+                                        <option>Mobile Software Repair</option>
+                                    </select>
+                                </div>
+                                <input type="text" id="reviewerText" required placeholder="Type your performance evaluation notes here..." class="w-full p-1 border rounded bg-white">
+                                <button type="submit" class="w-full bg-seboBlue text-white py-1 rounded uppercase font-bold text-[9px]">Upload Review</button>
+                            </form>
+                        </div>
+                        <button onclick="turnBookPage('services')" class="w-full bg-gray-800 text-white py-2 rounded text-xs font-bold uppercase tracking-wider mt-1">← Return to First Page</button>
+                    </div>
+
                 </div>
             </div>
 
-            <div id="page-contact" class="book-page w-full max-w-4xl bg-slate-950 bg-opacity-90 border border-blue-900 backdrop-blur-md p-6 rounded-2xl shadow-2xl text-white hidden max-h-[75vh] overflow-y-auto book-scroller">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-4 text-xs">
-                        <h3 class="text-base font-bold text-seboGold uppercase tracking-wider">Physical Contact Vectors</h3>
-                        <p class="bg-slate-900 p-3 rounded border border-gray-800">📍 <strong>Corporate Location:</strong> Mbeya, Tanzania (Campus Business Sectors)</p>
-                        <p class="bg-slate-900 p-3 rounded border border-gray-800">📞 <strong>Operations Network:</strong> +255 796 862 394</p>
-                        <p class="bg-slate-900 p-3 rounded border border-gray-800">✉️ <strong>Secure Gateway:</strong> info@sebosupplies.com</p>
-                        <p class="bg-slate-900 p-3 rounded border border-gray-800">⏰ <strong>Active Timeline Hours:</strong> Monday - Saturday: 08:00 AM - 08:00 PM</p>
-                    </div>
-                    <div class="bg-slate-900 p-4 rounded-xl border border-gray-800">
-                        <h3 class="text-base font-bold text-seboGold uppercase tracking-wider mb-3">Dispatch Inquiry</h3>
-                        <form onsubmit="event.preventDefault(); alert('Message dispatched successfully to SEBO core servers!');" class="space-y-3 text-xs">
-                            <input type="text" placeholder="Full Client Name" required class="w-full px-3 py-2 rounded bg-slate-800 border border-gray-700 text-white focus:outline-none">
-                            <input type="tel" placeholder="Communication Number" required class="w-full px-3 py-2 rounded bg-slate-800 border border-gray-700 text-white focus:outline-none">
-                            <textarea placeholder="Outline your detailed engineering or structural stationery load requests here..." rows="3" required class="w-full px-3 py-2 rounded bg-slate-800 border border-gray-700 text-white focus:outline-none"></textarea>
-                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded uppercase tracking-wider">Transmit Message</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        </div>
 
-        </main>
-
-        <footer class="w-full bg-slate-950 bg-opacity-80 py-3 text-center text-[10px] text-gray-400 border-t border-gray-900 z-50">
-            &copy; 2026 SEBO SUPPLIES & STATIONERY. All Operational Rights Safeguarded. Visionary Director: <span class="text-seboGold font-bold">GEOFREY SHINGWA PETER</span>
+        <footer class="w-full bg-slate-950 bg-opacity-90 py-3 text-center text-[10px] text-gray-400 border-t border-gray-900 z-50 font-mono">
+            &copy; 2026 SEBO SUPPLIES & STATIONERY. ALL RIGHTS SAFEGUARDED. CHIEF ARCHITECT: <span class="text-seboGold font-bold">GEOFREY SHINGWA PETER</span>
         </footer>
     </div>
 
     <script>
-        // Tab Page Flip Routing Engine (Simulates opening/closing book pages)
-        function openBookPage(pageId) {
-            // Hide all active view panels
-            document.querySelectorAll('.book-page').forEach(page => {
-                page.classList.add('hidden');
+        // Dictionary tracking simulated page numbering for the book layout
+        const pageNumbers = { services: "Page 02", products: "Page 03", reviews: "Page 04" };
+
+        function turnBookPage(contentId) {
+            // Hide all structural right hand pages
+            document.querySelectorAll('.book-sub-content').forEach(block => {
+                block.classList.add('hidden');
             });
             
-            // Remove active coloring states from nav buttons
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('text-seboGold');
-                link.classList.add('text-white');
+            // Remove selection borders from active tab triggers
+            document.querySelectorAll('.book-tab').forEach(tab => {
+                tab.classList.remove('text-seboGold');
+                tab.classList.add('text-white');
             });
 
-            // Activate target requested node panel
-            const activePage = document.getElementById(`page-${pageId}`);
-            if (activePage && pageId !== 'home') {
-                activePage.classList.remove('hidden');
-            }
+            // Display target requested layout module block
+            document.getElementById(`book-${contentId}`).classList.remove('hidden');
+            
+            // Highlight current clicked nav menu choice
+            document.getElementById(`tab-${contentId}`).classList.remove('text-white');
+            document.getElementById(`tab-${contentId}`).classList.add('text-seboGold');
 
-            // Highlights the active dashboard link module indicator
-            const activeLink = document.getElementById(`nav-${pageId}`);
-            if (activeLink) {
-                activeLink.classList.remove('text-white');
-                activeLink.classList.add('text-seboGold');
-            }
+            // Dynamically alter page numbers layout block
+            document.getElementById('page-number-view').innerText = pageNumbers[contentId];
         }
 
-        // Star Rating Handling Logic Matrix
-        let currentSelectedRating = 5;
-        function setRating(val) {
-            currentSelectedRating = val;
-            document.querySelectorAll('#starRatingContainer .star').forEach((star, index) => {
-                if(index < val) star.classList.add('text-seboGold'); else star.classList.remove('text-seboGold');
-            });
-        }
-        setRating(5); // baseline default call
-
-        // Review Log Dispatch Form Pipeline
+        // Live Testimonial comment Injection Processor
         function submitComment(e) {
             e.preventDefault();
             const name = document.getElementById('reviewerName').value;
             const service = document.getElementById('reviewedService').value;
             const textContent = document.getElementById('reviewerText').value;
-            let ratingStarsText = '★'.repeat(currentSelectedRating) + '☆'.repeat(5 - currentSelectedRating);
             
-            const layoutInjectedHTML = `
-                <div class="bg-slate-900 p-4 rounded-xl border border-blue-900 shadow-md">
-                    <div class="flex justify-between items-start text-xs">
-                        <div>
-                            <h4 class="font-bold text-white">${name}</h4>
-                            <span class="text-[10px] bg-seboGold text-seboBlue px-2 py-0.5 rounded font-bold mt-1 inline-block">${service}</span>
-                        </div>
-                        <div class="text-seboGold text-xs tracking-widest">${ratingStarsText}</div>
-                    </div>
-                    <p class="text-gray-400 text-xs mt-2 italic">"${textContent}"</p>
-                    <span class="text-[9px] text-gray-500 block mt-1 text-right">Verified Just Now</span>
+            const reviewCardHTML = `
+                <div class="bg-blue-50 p-3 rounded border border-blue-200 text-justify">
+                    <div class="flex justify-between font-bold text-[11px] text-seboBlue"><span>${name}</span><span>★★★★★</span></div>
+                    <span class="text-[8px] bg-seboBlue text-white px-1 rounded inline-block mt-0.5">${service}</span>
+                    <p class="text-[10px] text-gray-700 mt-1 italic">"${textContent}"</p>
                 </div>`;
                 
-            document.getElementById('commentsDisplayContainer').insertAdjacentHTML('afterbegin', layoutInjectedHTML);
+            document.getElementById('commentsDisplayContainer').insertAdjacentHTML('afterbegin', reviewCardHTML);
             document.getElementById('commentForm').reset();
-            setRating(5);
-            alert("Success! Review uploaded into local systems.");
+            alert("Success! Your verification comment has been securely written into page logs.");
         }
     </script>
 </body>
