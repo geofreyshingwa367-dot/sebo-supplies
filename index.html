@@ -3,138 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEBO SUPPLIES & STATIONERY | Technology & Digital Solutions</title>
+    <title>SEBO SUPPLIES & STATIONERY | Official Home Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        seboBlue: '#002060',
-                        seboGold: '#FFC000',
-                        seboDark: '#00133a'
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        body {
-            background-color: #0b1528;
+        /* Inafanya bango lienee vizuri bila kuwepo kwa nafasi tupu */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #001235;
+            font-family: sans-serif;
         }
-        /* Mtindo wa kuzuia skuta ndefu kwenye kompyuta lakini kuruhusu kwenye simu */
-        @media (min-width: 1024px) {
-            .main-container {
-                height: calc(100vh - 130px);
-                overflow: hidden;
-            }
+
+        /* Container inayoshikilia picha kama background kuu ya mfumo */
+        .homepage-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            overflow-x: hidden;
+        }
+
+        /* Hapa tunatengeneza Vitufe vya Siri (Interactive Hotspots) juu ya picha */
+        .hotspot {
+            position: absolute;
+            cursor: pointer;
+            /* Toa comment kwenye mstari wa chini ukianza kufanya majaribio ili uone vitufe vilipo */
+            /* background: rgba(255, 0, 0, 0.3); */ 
+            transition: all 0.2s ease-in-out;
+        }
+
+        .hotspot:hover {
+            background: rgba(255, 192, 0, 0.15);
+            box-shadow: 0 0 15px rgba(255, 192, 0, 0.4);
+            border: 1px solid #FFC000;
         }
     </style>
 </head>
-<body class="min-h-screen text-white font-sans antialiased flex flex-col justify-between">
+<body>
 
-    <header class="w-full bg-seboDark border-b border-gray-800 shadow-xl py-4 px-6 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <div class="text-center sm:text-left">
-                    <span class="text-seboGold font-black text-2xl tracking-wider block">SEBO</span>
-                    <span class="text-gray-300 text-[10px] tracking-widest font-bold uppercase">Supplies & Stationery</span>
-                </div>
-            </div>
-            <nav class="hidden md:flex items-center gap-6 text-xs font-semibold tracking-wider uppercase text-gray-300">
-                <a href="#nyumbani" class="text-seboGold hover:text-white transition">Nyumbani</a>
-                <a href="#huduma" class="hover:text-seboGold transition">Huduma Zetu</a>
-                <a href="#mawasiliano" class="hover:text-seboGold transition">Mawasiliano</a>
-            </nav>
-            <div class="flex items-center gap-3">
-                <a href="https://wa.me/255796862394" target="_blank" class="bg-gradient-to-r from-green-500 to-emerald-6xl bg-emerald-600 hover:scale-105 text-white font-bold px-4 py-2 rounded-xl text-xs uppercase tracking-wider shadow-lg transition duration-200 flex items-center gap-2">
-                    <span>💬</span> WhatsApp
-                </a>
-                <a href="tel:0796862394" class="bg-seboGold hover:bg-yellow-500 text-seboBlue font-bold px-4 py-2 rounded-xl text-xs uppercase tracking-wider transition shadow-lg">
-                    Tupigie
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <main class="main-container max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 flex-grow items-center">
+    <div class="homepage-container">
         
-        <div class="lg:col-span-5 flex flex-col justify-center space-y-6 text-center lg:text-left">
-            <div class="space-y-3">
-                <span class="bg-seboGold/10 text-seboGold border border-seboGold/30 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full inline-block">
-                    ⚡ Technology, Software & Stationery Hub
-                </span>
-                <h1 class="text-3xl md:text-5xl font-black tracking-tight leading-tight text-white">
-                    SEBO SUPPLIES <br class="hidden lg:block">
-                    <span class="text-seboGold">& STATIONERY</span>
-                </h1>
-                <p class="text-gray-300 text-sm md:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                    Mshirika wako wa kuaminika kwa suluhisho za kiteknolojia, programu za vifaa vya mkononi, matengenezo ya kompyuta, na vifaa vyote vya ofisi kwa bei nafuu kabisa.
-                </p>
-            </div>
+        <div class="relative w-full">
+            <img src="eboooooooooooooooooooooooooo.png" alt="SEBO Supplies Main Hub" class="w-full h-auto block">
 
-            <div class="grid grid-cols-3 gap-3 max-w-md mx-auto lg:mx-0 bg-seboDark/50 p-3 rounded-2xl border border-gray-800/80 backdrop-blur-sm shadow-inner">
-                <div class="text-center p-2 border-r border-gray-800">
-                    <span class="block text-xl font-black text-seboGold">1,250+</span>
-                    <span class="text-[9px] text-gray-400 font-medium">Wateja</span>
-                </div>
-                <div class="text-center p-2 border-r border-gray-800">
-                    <span class="block text-xl font-black text-white">2,500+</span>
-                    <span class="text-[9px] text-gray-400 font-medium">Miradi</span>
-                </div>
-                <div class="text-center p-2">
-                    <span class="block text-xl font-black text-seboGold">5+</span>
-                    <span class="text-[9px] text-gray-400 font-medium">Uzoefu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[68vh] overflow-y-auto pr-1">
+            <a href="#" class="hotspot" style="top: 2.2%; left: 19.5%; width: 4%; height: 2.5%;" title="Home"></a>
             
-            <div class="bg-gradient-to-br from-seboDark to-slate-900 p-5 rounded-2xl border border-gray-800 hover:border-seboGold/50 transition-all duration-300 group shadow-lg">
-                <div class="w-10 h-10 rounded-xl bg-blue-600/10 flex items-center justify-center text-xl text-blue-400 mb-3 group-hover:scale-110 transition-transform">💻</div>
-                <h3 class="font-bold text-base text-white group-hover:text-seboGold transition">Computer Repair</h3>
-                <p class="text-xs text-gray-400 mt-1 leading-relaxed">Tunatengeneza kompyuta zote, kuondoa virusi, na kuongeza kasi ya ufanyaji kazi.</p>
-            </div>
+            <a href="#about-section" class="hotspot" style="top: 2.2%; left: 24.3%; width: 6.5%; height: 2.5%;" title="About Us"></a>
+            
+            <a href="#services-section" class="hotspot" style="top: 2.2%; left: 31.3%; width: 6%; height: 2.5%;" title="Services"></a>
+            
+            <a href="#products-section" class="hotspot" style="top: 2.2%; left: 38%; width: 6.5%; height: 2.5%;" title="Products"></a>
+            
+            <a href="#gallery-section" class="hotspot" style="top: 2.2%; left: 45.2%; width: 5.5%; height: 2.5%;" title="Gallery"></a>
+            
+            <a href="https://wa.me/255796862394?text=Habari%20SEBO%20SUPPLIES,%20nataka%20kuagiza%20bidhaa/huduma" target="_blank" class="hotspot" style="top: 2.2%; left: 51.3%; width: 5%; height: 2.5%;" title="Orders"></a>
+            
+            <a href="#reviews-section" class="hotspot" style="top: 2.2%; left: 57%; width: 8.5%; height: 2.5%;" title="Testimonials"></a>
+            
+            <a href="tel:0796862394" class="hotspot" style="top: 2.2%; left: 66.2%; width: 6.5%; height: 2.5%;" title="Contact"></a>
 
-            <div class="bg-gradient-to-br from-seboDark to-slate-900 p-5 rounded-2xl border border-gray-800 hover:border-seboGold/50 transition-all duration-300 group shadow-lg">
-                <div class="w-10 h-10 rounded-xl bg-sky-600/10 flex items-center justify-center text-xl text-sky-400 mb-3 group-hover:scale-110 transition-transform">🪟</div>
-                <h3 class="font-bold text-base text-white group-hover:text-seboGold transition">Software Installation</h3>
-                <p class="text-xs text-gray-400 mt-1 leading-relaxed">Uwekaji wa Windows, Office, Drivers, Antivirus na programu zote za kihandisi.</p>
-            </div>
+            <a href="tel:0796862394" class="hotspot" style="top: 1.5%; left: 87.8%; width: 9.3%; height: 3.8%; border-radius: 20px;" title="Contact Us"></a>
 
-            <div class="bg-gradient-to-br from-seboDark to-slate-900 p-5 rounded-2xl border border-gray-800 hover:border-seboGold/50 transition-all duration-300 group shadow-lg">
-                <div class="w-10 h-10 rounded-xl bg-amber-600/10 flex items-center justify-center text-xl text-amber-400 mb-3 group-hover:scale-110 transition-transform">📱</div>
-                <h3 class="font-bold text-base text-white group-hover:text-seboGold transition">Mobile Services</h3>
-                <p class="text-xs text-gray-400 mt-1 leading-relaxed">Flashing, kusasisha programu (updates), kuondoa mifumo ya ulinzi (FRP) na optimization.</p>
-            </div>
 
-            <div class="bg-gradient-to-br from-seboDark to-slate-900 p-5 rounded-2xl border border-gray-800 hover:border-seboGold/50 transition-all duration-300 group shadow-lg">
-                <div class="w-10 h-10 rounded-xl bg-purple-600/10 flex items-center justify-center text-xl text-purple-400 mb-3 group-hover:scale-110 transition-transform">🖨️</div>
-                <h3 class="font-bold text-base text-white group-hover:text-seboGold transition">Printing Services</h3>
-                <p class="text-xs text-gray-400 mt-1 leading-relaxed">Uchapishaji bora, kutoa nakala (photocopy), kurefusha, kuweka jalada (binding) na lamination.</p>
-            </div>
+            <a href="https://wa.me/255796862394?text=Habari%20SEBO%20SUPPLIES,%20naomba%20kufanya%20manunuzi" target="_blank" class="hotspot" style="top: 41%; left: 34.3%; width: 10.2%; height: 4.5%; border-radius: 8px;" title="Order Now"></a>
+            
+            <a href="#services-detail-section" class="hotspot" style="top: 41%; left: 45.2%; width: 11.2%; height: 4.5%; border-radius: 8px;" title="Our Services"></a>
+            
+            <a href="tel:0796862394" class="hotspot" style="top: 41%; left: 57.1%; width: 10.4%; height: 4.5%; border-radius: 8px;" title="Contact Us"></a>
 
-            <div class="bg-gradient-to-br from-seboDark to-slate-900 p-5 rounded-2xl border border-gray-800 hover:border-seboGold/50 transition-all duration-300 group shadow-lg">
-                <div class="w-10 h-10 rounded-xl bg-teal-600/10 flex items-center justify-center text-xl text-teal-400 mb-3 group-hover:scale-110 transition-transform">📚</div>
-                <h3 class="font-bold text-base text-white group-hover:text-seboGold transition">Stationery Supplies</h3>
-                <p class="text-xs text-gray-400 mt-1 leading-relaxed">Vitabu, kalamu, mafaili, makaratasi, na vifaa vyote vya ofisi na shule.</p>
-            </div>
 
-            <div class="bg-gradient-to-br from-seboDark to-slate-900 p-5 rounded-2xl border border-gray-800 hover:border-seboGold/50 transition-all duration-300 group shadow-lg">
-                <div class="w-10 h-10 rounded-xl bg-rose-600/10 flex items-center justify-center text-xl text-rose-400 mb-3 group-hover:scale-110 transition-transform">🌐</div>
-                <h3 class="font-bold text-base text-white group-hover:text-seboGold transition">Online Services</h3>
-                <p class="text-xs text-gray-400 mt-1 leading-relaxed">Uandishi wa CV, maombi ya mtandaoni, kutengeneza barua pepe, na huduma za mtandao.</p>
-            </div>
+            <div onclick="openModal('Computer Repair', 'Tunarekebisha kompyuta zote, kuondoa virusi (virus removal), kuongeza kasi ya kompyuta (speed up performance) na matatizo mengine yote ya kiufundi.')" class="hotspot" style="top: 62.5%; left: 5.1%; width: 13.7%; height: 15.5%; border-radius: 12px;" title="Computer Repair"></div>
+            
+            <div onclick="openModal('Software Installation', 'Tunafanya uwekaji wa mifumo ya Windows (Operating Systems), Microsoft Office, Drivers za kompyuta, Antivirus thabiti, pamoja na programu zote za kihandisi na ofisi kulingana na mahitaji yako.')" class="hotspot" style="top: 62.5%; left: 19.8%; width: 13.8%; height: 15.5%; border-radius: 12px;" title="Software Installation"></div>
+            
+            <div onclick="openModal('Mobile Services', 'Huduma za simu: Flashing, kusasisha programu za simu (software updates), kutatua matatizo ya kimfumo (troubleshooting), kuondoa Gmail/FRP lock, na kuongeza seva ya utendaji wa kifaa chako (device optimization).')" class="hotspot" style="top: 62.5%; left: 34.6%; width: 13.8%; height: 15.5%; border-radius: 12px;" title="Mobile Services"></div>
+            
+            <div onclick="openModal('Printing Services', 'Uchapishaji bora wa nyaraka (Printing), kutoa nakala (photocopying), kuskani (scanning), kubana vitabu (binding), lamination, na maandalizi ya kijitabu.')" class="hotspot" style="top: 62.5%; left: 49.5%; width: 13.8%; height: 15.5%; border-radius: 12px;" title="Printing Services"></div>
+            
+            <div onclick="openModal('Stationery Supplies', 'Tunauza na kusambaza vitabu, kalamu, mafaili, makaratasi ya kila aina (A4, n.k), na vifaa vyote muhimu vya ofisini na shuleni.')" class="hotspot" style="top: 62.5%; left: 64.9%; width: 14.6%; height: 15.5%; border-radius: 12px;" title="Stationery Supplies"></div>
+            
+            <div onclick="openModal('Online Services', 'Uandishi wa kitaalamu wa CV na Cover Letters, maombi ya kazi au vyuo mtandaoni (online applications), utengenezaji wa barua pepe, pamoja na kutoa huduma zote za intaneti.')" class="hotspot" style="top: 62.5%; left: 80.5%; width: 13.9%; height: 15.5%; border-radius: 12px;" title="Online Services"></div>
+
+
+            <a href="https://wa.me/255796862394" target="_blank" class="hotspot" style="top: 93.3%; left: 1.1%; width: 11.2%; height: 4.1%; border-radius: 30px;" title="Chat on WhatsApp"></a>
+
+            <a href="https://wa.me/255796862394?text=Habari!%20Naomba%20mmsaada%20wa%20Live%20Chat" target="_blank" class="hotspot" style="top: 93.3%; left: 91.2%; width: 7.6%; height: 4.1%; border-radius: 30px;" title="Live Chat"></a>
+
+            <a href="https://wa.me/255796862394" target="_blank" class="hotspot" style="top: 32.5%; left: 96.5%; width: 2.3%; height: 3.5%; border-radius: 50%;" title="WhatsApp"></a>
+            <a href="#" class="hotspot" style="top: 37.8%; left: 96.5%; width: 2.3%; height: 3.5%; border-radius: 50%;" title="Messenger"></a>
+            <a href="tel:0796862394" class="hotspot" style="top: 43.1%; left: 96.5%; width: 2.3%; height: 3.5%; border-radius: 50%;" title="Call Us"></a>
 
         </div>
 
-    </main>
+    </div>
 
-    <footer class="w-full bg-slate-950/90 py-3 text-center text-[10px] text-gray-500 tracking-wider border-t border-gray-900/60 backdrop-blur-md">
-        &copy; 2026 SEBO SUPPLIES & STATIONERY. HAKI ZOTE ZIMEHIFADHIWA. <br class="sm:hidden">
-        MTUNZI WA MFUMO: <span class="text-seboGold font-bold">GEOFREY SHINGWA PETER</span>
-    </footer>
+    <div id="infoModal" class="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-[#00133a] border-2 border-[#FFC000] w-full max-w-md rounded-2xl p-6 shadow-2xl transform scale-95 transition-all">
+            <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                <h3 id="modalTitle" class="text-[#FFC000] font-black text-xl tracking-wide uppercase"></h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white font-bold text-lg bg-slate-900 w-8 h-8 rounded-full flex items-center justify-center border border-gray-800">&times;</button>
+            </div>
+            <div class="mt-4">
+                <p id="modalDescription" class="text-gray-200 text-sm leading-relaxed"></p>
+            </div>
+            <div class="mt-6 flex gap-3">
+                <a href="https://wa.me/255796862394" target="_blank" class="flex-1 bg-green-600 hover:bg-green-700 text-center font-bold py-2.5 rounded-xl text-xs uppercase tracking-wider transition">
+                    💬 Agiza Kupitia WhatsApp
+                </a>
+                <a href="tel:0796862394" class="bg-[#FFC000] hover:bg-yellow-500 text-[#002060] font-bold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider transition text-center">
+                    📞 Piga Simu
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(title, description) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDescription').innerText = description;
+            
+            const modal = document.getElementById('infoModal');
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('infoModal');
+            modal.classList.add('hidden');
+        }
+
+        // Kufunga modal pale mteja anapobonyeza nje ya box la maelezo
+        window.onclick = function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                modal.classList.add('hidden');
+            }
+        }
+    </script>
 
 </body>
 </html>
