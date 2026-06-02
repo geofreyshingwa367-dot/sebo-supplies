@@ -1,146 +1,329 @@
 <!DOCTYPE html>
-<html lang="sw">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEBO SUPPLIES & STATIONERY | Official Home Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Inafanya bango lienee vizuri bila kuwepo kwa nafasi tupu */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #001235;
-            font-family: sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEBO Supplies & Stationery</title>
 
-        /* Container inayoshikilia picha kama background kuu ya mfumo */
-        .homepage-container {
-            position: relative;
-            width: 100%;
-            max-width: 100%;
-            margin: 0 auto;
-            overflow-x: hidden;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        /* Hapa tunatengeneza Vitufe vya Siri (Interactive Hotspots) juu ya picha */
-        .hotspot {
-            position: absolute;
-            cursor: pointer;
-            /* Toa comment kwenye mstari wa chini ukianza kufanya majaribio ili uone vitufe vilipo */
-            /* background: rgba(255, 0, 0, 0.3); */ 
-            transition: all 0.2s ease-in-out;
-        }
+<style>
 
-        .hotspot:hover {
-            background: rgba(255, 192, 0, 0.15);
-            box-shadow: 0 0 15px rgba(255, 192, 0, 0.4);
-            border: 1px solid #FFC000;
-        }
-    </style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#fff;
+overflow-x:hidden;
+}
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:15px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.3);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+.logo img{
+height:70px;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:#fff;
+font-weight:500;
+transition:.4s;
+}
+
+nav ul li a:hover{
+color:#D4AF37;
+}
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+animation:slider 20s infinite;
+background-size:cover;
+background-position:center;
+}
+
+@keyframes slider{
+
+0%,20%{
+background:
+linear-gradient(rgba(0,45,114,.75),rgba(0,45,114,.75)),
+url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80');
+background-size:cover;
+}
+
+25%,45%{
+background:
+linear-gradient(rgba(0,45,114,.75),rgba(0,45,114,.75)),
+url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80');
+background-size:cover;
+}
+
+50%,70%{
+background:
+linear-gradient(rgba(0,45,114,.75),rgba(0,45,114,.75)),
+url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80');
+background-size:cover;
+}
+
+75%,100%{
+background:
+linear-gradient(rgba(0,45,114,.75),rgba(0,45,114,.75)),
+url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80');
+background-size:cover;
+}
+}
+
+.hero-content h1{
+font-size:70px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.hero-content span{
+color:#D4AF37;
+}
+
+.hero-content p{
+max-width:800px;
+margin:auto;
+font-size:20px;
+line-height:1.8;
+}
+
+.btns{
+margin-top:30px;
+}
+
+.btn{
+display:inline-block;
+padding:15px 35px;
+margin:10px;
+border-radius:40px;
+text-decoration:none;
+font-weight:600;
+transition:.4s;
+}
+
+.btn1{
+background:#D4AF37;
+color:#002D72;
+}
+
+.btn1:hover{
+transform:translateY(-5px);
+}
+
+.btn2{
+border:2px solid white;
+color:white;
+}
+
+.btn2:hover{
+background:white;
+color:#002D72;
+}
+
+.services{
+padding:100px 8%;
+text-align:center;
+}
+
+.services h2{
+font-size:45px;
+color:#002D72;
+margin-bottom:50px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card h3{
+color:#002D72;
+margin-bottom:15px;
+}
+
+.about{
+padding:100px 8%;
+background:#f5f5f5;
+text-align:center;
+}
+
+.about h2{
+font-size:45px;
+color:#002D72;
+margin-bottom:20px;
+}
+
+.about p{
+max-width:900px;
+margin:auto;
+line-height:1.8;
+}
+
+footer{
+background:#002D72;
+color:white;
+padding:30px;
+text-align:center;
+}
+
+@media(max-width:768px){
+
+.hero-content h1{
+font-size:40px;
+}
+
+nav{
+display:none;
+}
+
+}
+
+</style>
 </head>
 <body>
 
-    <div class="homepage-container">
-        
-        <div class="relative w-full">
-            <img src="eboooooooooooooooooooooooooo.png" alt="SEBO Supplies Main Hub" class="w-full h-auto block">
+<header>
 
-            <a href="#" class="hotspot" style="top: 2.2%; left: 19.5%; width: 4%; height: 2.5%;" title="Home"></a>
-            
-            <a href="#about-section" class="hotspot" style="top: 2.2%; left: 24.3%; width: 6.5%; height: 2.5%;" title="About Us"></a>
-            
-            <a href="#services-section" class="hotspot" style="top: 2.2%; left: 31.3%; width: 6%; height: 2.5%;" title="Services"></a>
-            
-            <a href="#products-section" class="hotspot" style="top: 2.2%; left: 38%; width: 6.5%; height: 2.5%;" title="Products"></a>
-            
-            <a href="#gallery-section" class="hotspot" style="top: 2.2%; left: 45.2%; width: 5.5%; height: 2.5%;" title="Gallery"></a>
-            
-            <a href="https://wa.me/255796862394?text=Habari%20SEBO%20SUPPLIES,%20nataka%20kuagiza%20bidhaa/huduma" target="_blank" class="hotspot" style="top: 2.2%; left: 51.3%; width: 5%; height: 2.5%;" title="Orders"></a>
-            
-            <a href="#reviews-section" class="hotspot" style="top: 2.2%; left: 57%; width: 8.5%; height: 2.5%;" title="Testimonials"></a>
-            
-            <a href="tel:0796862394" class="hotspot" style="top: 2.2%; left: 66.2%; width: 6.5%; height: 2.5%;" title="Contact"></a>
+<div class="logo">
+<img src="logo.png" alt="SEBO Logo">
+</div>
 
-            <a href="tel:0796862394" class="hotspot" style="top: 1.5%; left: 87.8%; width: 9.3%; height: 3.8%; border-radius: 20px;" title="Contact Us"></a>
+<nav>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#">Gallery</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</nav>
 
+</header>
 
-            <a href="https://wa.me/255796862394?text=Habari%20SEBO%20SUPPLIES,%20naomba%20kufanya%20manunuzi" target="_blank" class="hotspot" style="top: 41%; left: 34.3%; width: 10.2%; height: 4.5%; border-radius: 8px;" title="Order Now"></a>
-            
-            <a href="#services-detail-section" class="hotspot" style="top: 41%; left: 45.2%; width: 11.2%; height: 4.5%; border-radius: 8px;" title="Our Services"></a>
-            
-            <a href="tel:0796862394" class="hotspot" style="top: 41%; left: 57.1%; width: 10.4%; height: 4.5%; border-radius: 8px;" title="Contact Us"></a>
+<section class="hero">
 
+<div class="hero-content">
 
-            <div onclick="openModal('Computer Repair', 'Tunarekebisha kompyuta zote, kuondoa virusi (virus removal), kuongeza kasi ya kompyuta (speed up performance) na matatizo mengine yote ya kiufundi.')" class="hotspot" style="top: 62.5%; left: 5.1%; width: 13.7%; height: 15.5%; border-radius: 12px;" title="Computer Repair"></div>
-            
-            <div onclick="openModal('Software Installation', 'Tunafanya uwekaji wa mifumo ya Windows (Operating Systems), Microsoft Office, Drivers za kompyuta, Antivirus thabiti, pamoja na programu zote za kihandisi na ofisi kulingana na mahitaji yako.')" class="hotspot" style="top: 62.5%; left: 19.8%; width: 13.8%; height: 15.5%; border-radius: 12px;" title="Software Installation"></div>
-            
-            <div onclick="openModal('Mobile Services', 'Huduma za simu: Flashing, kusasisha programu za simu (software updates), kutatua matatizo ya kimfumo (troubleshooting), kuondoa Gmail/FRP lock, na kuongeza seva ya utendaji wa kifaa chako (device optimization).')" class="hotspot" style="top: 62.5%; left: 34.6%; width: 13.8%; height: 15.5%; border-radius: 12px;" title="Mobile Services"></div>
-            
-            <div onclick="openModal('Printing Services', 'Uchapishaji bora wa nyaraka (Printing), kutoa nakala (photocopying), kuskani (scanning), kubana vitabu (binding), lamination, na maandalizi ya kijitabu.')" class="hotspot" style="top: 62.5%; left: 49.5%; width: 13.8%; height: 15.5%; border-radius: 12px;" title="Printing Services"></div>
-            
-            <div onclick="openModal('Stationery Supplies', 'Tunauza na kusambaza vitabu, kalamu, mafaili, makaratasi ya kila aina (A4, n.k), na vifaa vyote muhimu vya ofisini na shuleni.')" class="hotspot" style="top: 62.5%; left: 64.9%; width: 14.6%; height: 15.5%; border-radius: 12px;" title="Stationery Supplies"></div>
-            
-            <div onclick="openModal('Online Services', 'Uandishi wa kitaalamu wa CV na Cover Letters, maombi ya kazi au vyuo mtandaoni (online applications), utengenezaji wa barua pepe, pamoja na kutoa huduma zote za intaneti.')" class="hotspot" style="top: 62.5%; left: 80.5%; width: 13.9%; height: 15.5%; border-radius: 12px;" title="Online Services"></div>
+<h1>SEBO <span>SUPPLIES & STATIONERY</span></h1>
 
+<p>
+Quality Supplies, Exceptional Results.
+Your trusted partner for stationery products,
+printing services, internet services, software installation,
+computer maintenance and office solutions.
+</p>
 
-            <a href="https://wa.me/255796862394" target="_blank" class="hotspot" style="top: 93.3%; left: 1.1%; width: 11.2%; height: 4.1%; border-radius: 30px;" title="Chat on WhatsApp"></a>
+<div class="btns">
+<a href="#services" class="btn btn1">Our Services</a>
+<a href="#" class="btn btn2">Contact Us</a>
+</div>
 
-            <a href="https://wa.me/255796862394?text=Habari!%20Naomba%20mmsaada%20wa%20Live%20Chat" target="_blank" class="hotspot" style="top: 93.3%; left: 91.2%; width: 7.6%; height: 4.1%; border-radius: 30px;" title="Live Chat"></a>
+</div>
 
-            <a href="https://wa.me/255796862394" target="_blank" class="hotspot" style="top: 32.5%; left: 96.5%; width: 2.3%; height: 3.5%; border-radius: 50%;" title="WhatsApp"></a>
-            <a href="#" class="hotspot" style="top: 37.8%; left: 96.5%; width: 2.3%; height: 3.5%; border-radius: 50%;" title="Messenger"></a>
-            <a href="tel:0796862394" class="hotspot" style="top: 43.1%; left: 96.5%; width: 2.3%; height: 3.5%; border-radius: 50%;" title="Call Us"></a>
+</section>
 
-        </div>
+<section class="services" id="services">
 
-    </div>
+<h2>Our Services</h2>
 
-    <div id="infoModal" class="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center hidden z-50 p-4">
-        <div class="bg-[#00133a] border-2 border-[#FFC000] w-full max-w-md rounded-2xl p-6 shadow-2xl transform scale-95 transition-all">
-            <div class="flex justify-between items-center border-b border-gray-800 pb-3">
-                <h3 id="modalTitle" class="text-[#FFC000] font-black text-xl tracking-wide uppercase"></h3>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-white font-bold text-lg bg-slate-900 w-8 h-8 rounded-full flex items-center justify-center border border-gray-800">&times;</button>
-            </div>
-            <div class="mt-4">
-                <p id="modalDescription" class="text-gray-200 text-sm leading-relaxed"></p>
-            </div>
-            <div class="mt-6 flex gap-3">
-                <a href="https://wa.me/255796862394" target="_blank" class="flex-1 bg-green-600 hover:bg-green-700 text-center font-bold py-2.5 rounded-xl text-xs uppercase tracking-wider transition">
-                    💬 Agiza Kupitia WhatsApp
-                </a>
-                <a href="tel:0796862394" class="bg-[#FFC000] hover:bg-yellow-500 text-[#002060] font-bold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider transition text-center">
-                    📞 Piga Simu
-                </a>
-            </div>
-        </div>
-    </div>
+<div class="cards">
 
-    <script>
-        function openModal(title, description) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDescription').innerText = description;
-            
-            const modal = document.getElementById('infoModal');
-            modal.classList.remove('hidden');
-        }
+<div class="card">
+<h3>🖨 Printing</h3>
+<p>Professional color and black & white printing.</p>
+</div>
 
-        function closeModal() {
-            const modal = document.getElementById('infoModal');
-            modal.classList.add('hidden');
-        }
+<div class="card">
+<h3>📄 Photocopying</h3>
+<p>Fast and affordable photocopying services.</p>
+</div>
 
-        // Kufunga modal pale mteja anapobonyeza nje ya box la maelezo
-        window.onclick = function(event) {
-            const modal = document.getElementById('infoModal');
-            if (event.target == modal) {
-                modal.classList.add('hidden');
-            }
-        }
-    </script>
+<div class="card">
+<h3>🌐 Internet Services</h3>
+<p>Online applications, registrations and e-services.</p>
+</div>
+
+<div class="card">
+<h3>💻 Software Installation</h3>
+<p>Windows installation, drivers and troubleshooting.</p>
+</div>
+
+<div class="card">
+<h3>📚 Stationery Supplies</h3>
+<p>Books, files, pens, papers and office equipment.</p>
+</div>
+
+<div class="card">
+<h3>🛠 Computer Maintenance</h3>
+<p>Virus removal and system optimization.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="about" id="about">
+
+<h2>Why Choose SEBO?</h2>
+
+<p>
+SEBO Supplies & Stationery provides high-quality stationery products,
+professional printing services, internet solutions and computer support.
+We are committed to delivering excellent customer service, affordable
+prices and reliable solutions for students, businesses and organizations.
+</p>
+
+</section>
+
+<footer>
+
+© 2026 SEBO Supplies & Stationery | Quality Supplies, Exceptional Results
+
+</footer>
 
 </body>
 </html>
